@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Guess the Movie - Picture Challenge</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="game-box">
+    <h1>🎬 Guess the Movie</h1>
+    <p>Read the clues and guess the correct movie title!</p>
+
+    <div class="status-bar">
+      <span>Question: <b id="q-no">1 / 5</b></span>
+      <span>Timer: <b id="timer" style="color:red;">20s</b></span>
+      <span>Score: <b id="score">0</b></span>
+    </div>
+
+    <div class="clue-card">
+      <div id="movie-emoji" class="movie-emoji">🌀</div>
+      <p id="clue-text">Scene Clue: "A spinning top that checks if you are in a dream or reality."</p>
+      <button onclick="showHint()" class="hint-btn">💡 Need a Hint?</button>
+      <p id="hint-text" style="display:none; color:#d69e2e; font-weight:bold;"></p>
+    </div>
+
+    <div id="options-box" class="options-grid">
+      <!-- Options injected here -->
+    </div>
+
+    <div id="result-msg" class="result-msg"></div>
+
+    <button onclick="nextQuestion()" id="next-btn" style="display:none;" class="main-btn">Next Question →</button>
+    <button onclick="restartGame()" id="restart-btn" style="display:none;" class="main-btn">Play Again 🔄</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

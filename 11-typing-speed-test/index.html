@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Typing Speed Test</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="box">
+    <h1>⌨️ Typing Speed Test</h1>
+    <p>Type the text passage as fast and accurately as you can!</p>
+
+    <!-- Score & Timer -->
+    <div class="stats-bar">
+      <span>Time Left: <b id="timer" style="color:red;">30s</b></span>
+      <span>Speed: <b id="wpm-display">0 WPM</b></span>
+      <span>Accuracy: <b id="accuracy-display">100%</b></span>
+      <span>Errors: <b id="error-count">0</b></span>
+    </div>
+
+    <!-- Passage -->
+    <div id="quote-display" class="quote-box">Click Start Test below to begin typing.</div>
+
+    <!-- Input -->
+    <textarea id="typing-input" rows="3" placeholder="Start typing here once you click start..." disabled></textarea>
+
+    <div class="btn-row">
+      <button onclick="startTest()" id="start-btn" class="main-btn">Start Test 🚀</button>
+      <button onclick="resetTest()" class="sub-btn">Reset 🔄</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

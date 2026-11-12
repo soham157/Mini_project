@@ -1,0 +1,110 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fffaf0;
+  margin: 0;
+  padding: 20px;
+  color: #2d3748;
+}
+
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #eed8b8;
+  text-align: center;
+}
+
+h1 {
+  color: #dd6b20;
+  margin-top: 0;
+}
+
+.filter-box {
+  background: #feebc8;
+  padding: 12px;
+  border-radius: 6px;
+  margin: 15px 0;
+  text-align: left;
+  font-size: 14px;
+}
+
+select {
+  padding: 6px;
+  font-size: 14px;
+}
+
+button {
+  padding: 10px 16px;
+  font-size: 15px;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.main-btn {
+  background: #dd6b20;
+  color: white;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.main-btn:hover {
+  background: #c05621;
+}
+
+.food-card {
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+  background: #f7fafc;
+}
+
+.food-icon {
+  font-size: 50px;
+  margin-bottom: 8px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  background: #edf2f7;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.fav-btn {
+  background: #e2e8f0;
+  color: #4a5568;
+}
+
+.fav-btn:hover {
+  background: #cbd5e0;
+}
+
+.fav-section {
+  text-align: left;
+  background: #edf2f7;
+  padding: 12px;
+  border-radius: 6px;
+}
+
+.fav-section h3 {
+  margin-top: 0;
+}
+
+ul {
+  padding-left: 20px;
+  font-size: 14px;
+}
+
+.clear-btn {
+  background: #e53e3e;
+  color: white;
+  padding: 5px 10px;
+  font-size: 12px;
+}

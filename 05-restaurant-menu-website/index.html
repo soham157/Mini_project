@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Green Valley Restaurant Menu</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header>
+    <h1>🍲 Green Valley Restaurant</h1>
+    <nav>
+      <a href="#menu-area">Menu</a>
+      <a href="#offers-area">Offers</a>
+      <a href="#contact-area">Contact</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <!-- Search & Filter -->
+    <section id="menu-area">
+      <h2>Our Food Menu</h2>
+      <input type="text" id="search-input" onkeyup="filterMenu()" placeholder="Search food by name (e.g. Paneer, Rice, Brownie)...">
+
+      <div class="category-buttons">
+        <button onclick="setCategory('all')" class="cat-btn active">All Items</button>
+        <button onclick="setCategory('Starters')" class="cat-btn">Starters</button>
+        <button onclick="setCategory('Main Course')" class="cat-btn">Main Course</button>
+        <button onclick="setCategory('Chinese')" class="cat-btn">Chinese</button>
+        <button onclick="setCategory('Desserts')" class="cat-btn">Desserts</button>
+        <button onclick="setCategory('Beverages')" class="cat-btn">Beverages</button>
+      </div>
+
+      <!-- Menu Grid -->
+      <div id="menu-grid" class="menu-grid">
+        <!-- Rendered items -->
+      </div>
+    </section>
+
+    <!-- Special Offers -->
+    <section id="offers-area" class="section-box">
+      <h2>🔥 Special Offers & Combos</h2>
+      <div class="offer-item">
+        <h3>Burger & Fries Combo - Only ₹199 <strike>₹250</strike></h3>
+        <p>Juicy vegetable burger served with peri-peri fries and a chilled soft drink.</p>
+      </div>
+      <div class="offer-item">
+        <h3>Family Feast Combo - Only ₹499 <strike>₹650</strike></h3>
+        <p>Paneer Butter Masala + Dal Makhani + 4 Butter Rotis + Jeera Rice + Gulab Jamun.</p>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact-area" class="section-box">
+      <h2>Contact & Table Booking</h2>
+      <p><b>Address:</b> 12 MG Road, Bengaluru, Karnataka</p>
+      <p><b>Phone:</b> +91 98765 12345 | <b>Hours:</b> 11:00 AM - 11:00 PM</p>
+      <form onsubmit="handleContact(event)">
+        <input type="text" placeholder="Your Name" required><br>
+        <input type="email" placeholder="Your Email" required><br>
+        <textarea rows="3" placeholder="Reservation Details or Message" required></textarea><br>
+        <button type="submit" class="submit-btn">Send Message</button>
+      </form>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

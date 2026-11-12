@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Outfit Planner - What Should I Wear?</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="box">
+    <h1>👗 Outfit Planner</h1>
+    <p>Find the perfect clothing combination for your day.</p>
+
+    <!-- Occasion & Weather -->
+    <div class="control-row">
+      <label><b>Occasion:</b></label>
+      <select id="occ-select">
+        <option value="college">College</option>
+        <option value="office">Office</option>
+        <option value="party">Party</option>
+        <option value="sports">Sports / Gym</option>
+        <option value="casual">Casual Outing</option>
+      </select>
+
+      <label style="margin-left: 10px;"><b>Weather:</b></label>
+      <select id="weather-select">
+        <option value="sunny">Sunny ☀️</option>
+        <option value="rainy">Rainy 🌧️</option>
+        <option value="cold">Cold ❄️</option>
+      </select>
+    </div>
+
+    <button onclick="generateOutfit()" class="btn-gen">✨ Generate Outfit Combination</button>
+
+    <!-- Outfit Result Card -->
+    <div class="outfit-card">
+      <h3 id="outfit-title">College Outfit</h3>
+      <ul class="outfit-items">
+        <li><b>Topwear:</b> <span id="top-val">T-Shirt</span></li>
+        <li><b>Bottomwear:</b> <span id="bottom-val">Jeens</span></li>
+        <li><b>Footwear:</b> <span id="shoes-val">Sneakers</span></li>
+        <li><b>Accessory:</b> <span id="acc-val">Watch</span></li>
+      </ul>
+      <p id="weather-tip" style="font-size: 13px; color: #4a5568;">Weather Tip: Wear light cotton fabrics today!</p>
+      <button onclick="saveFavorite()" class="btn-fav">❤️ Save to Favorites</button>
+    </div>
+
+    <!-- Saved List -->
+    <div class="saved-box">
+      <h4>My Saved Outfits</h4>
+      <ul id="saved-list">
+        <li>No saved outfits yet.</li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
