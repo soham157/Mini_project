@@ -1,109 +1,20 @@
-// Student Mini Project: Guess the Movie
-var questions = [
-  { title: "Inception", emoji: "🌀", clue: "A spinning top that checks if you are in a dream or reality.", hint: "Directed by Christopher Nolan, starring Leonardo DiCaprio.", options: ["Inception", "Interstellar", "Tenet", "The Matrix"], ans: 0 },
-  { title: "Titanic", emoji: "🚢", clue: "An unsinkable ocean liner, the Heart of the Ocean sapphire, and a wooden door.", hint: "Famous dialogue: 'I'll never let go, Jack.'", options: ["Poseidon", "Titanic", "Life of Pi", "Cast Away"], ans: 1 },
-  { title: "3 Idiots", emoji: "🛵", clue: "Yellow scooter in Ladakh, engineering exams, and 'All Izz Well'.", hint: "Starring Aamir Khan, R. Madhavan, and Sharman Joshi.", options: ["Taare Zameen Par", "Chhichhore", "3 Idiots", "PK"], ans: 2 },
-  { title: "The Lion King", emoji: "🦁", clue: "A young cub held high on Pride Rock with animals bowing.", hint: "Features the iconic song 'Hakuna Matata'.", options: ["Jungle Book", "The Lion King", "Madagascar", "Tarzan"], ans: 1 },
-  { title: "Sholay", emoji: "🔫", clue: "A double-headed coin, a horse cart, and 'Kitne aadmi the?'", hint: "Iconic 1975 Bollywood classic with Jai and Veeru.", options: ["Deewaar", "Sholay", "Zanjeer", "Don"], ans: 1 }
-];
-
-var currentIdx = 0;
-var score = 0;
-var timer = 20;
-var timerId = null;
-
-window.onload = function() {
-  loadQuestion();
-};
-
-function loadQuestion() {
-  var q = questions[currentIdx];
-  document.getElementById('q-no').innerText = (currentIdx + 1) + " / " + questions.length;
-  document.getElementById('score').innerText = score;
-  document.getElementById('movie-emoji').innerText = q.emoji;
-  document.getElementById('clue-text').innerText = "Scene Clue: " + q.clue;
-  document.getElementById('hint-text').style.display = "none";
-  document.getElementById('result-msg').innerText = "";
-  document.getElementById('next-btn').style.display = "none";
-
-  var box = document.getElementById('options-box');
-  box.innerHTML = "";
-  for (var i = 0; i < q.options.length; i++) {
-    var btn = document.createElement('button');
-    btn.className = "opt-btn";
-    btn.innerText = q.options[i];
-    btn.onclick = (function(idx) {
-      return function() { checkAnswer(idx); };
-    })(i);
-    box.appendChild(btn);
-  }
-
-  // Timer
-  timer = 20;
-  document.getElementById('timer').innerText = timer + "s";
-  clearInterval(timerId);
-  timerId = setInterval(function() {
-    timer--;
-    document.getElementById('timer').innerText = timer + "s";
-    if (timer <= 0) {
-      clearInterval(timerId);
-      document.getElementById('result-msg').innerText = "⏰ Time's up! The answer was " + q.title;
-      document.getElementById('result-msg').style.color = "red";
-      disableOptions();
-      showNextOrFinish();
-    }
-  }, 1000);
-}
-
-function showHint() {
-  var q = questions[currentIdx];
-  var ht = document.getElementById('hint-text');
-  ht.innerText = "💡 Hint: " + q.hint;
-  ht.style.display = "block";
-}
-
-function checkAnswer(chosenIdx) {
-  clearInterval(timerId);
-  var q = questions[currentIdx];
-  disableOptions();
-
-  if (chosenIdx === q.ans) {
-    score += 10;
-    document.getElementById('score').innerText = score;
-    document.getElementById('result-msg').innerText = "✅ Correct Answer! (+10 pts)";
-    document.getElementById('result-msg').style.color = "#48bb78";
-  } else {
-    document.getElementById('result-msg').innerText = "❌ Wrong! The correct movie is " + q.title;
-    document.getElementById('result-msg').style.color = "#f56565";
-  }
-
-  showNextOrFinish();
-}
-
-function disableOptions() {
-  var btns = document.querySelectorAll('.opt-btn');
-  for (var i = 0; i < btns.length; i++) {
-    btns[i].disabled = true;
-  }
-}
-
-function showNextOrFinish() {
-  if (currentIdx < questions.length - 1) {
-    document.getElementById('next-btn').style.display = "block";
-  } else {
-    document.getElementById('result-msg').innerText += " 🎉 Final Score: " + score + " / " + (questions.length * 10);
-    document.getElementById('restart-btn').style.display = "block";
-  }
-}
-
-function nextQuestion() {
-  currentIdx++;
-  loadQuestion();
-}
-
-function restartGame() {
-  currentIdx = 0;
-  score = 0;
-  document.getElementById('restart-btn').style.display = "none";
-  loadQuestion();
-}
+// Picture clues are emoji sets so the game works offline with no image files.
+const D={'Hollywood':[['🦁👑🌅','The Lion King',['The Lion King','Madagascar','Jumanji','Tarzan'],'Disney animated classic set in Africa'],['🚢🧊💔','Titanic',['Titanic','Poseidon','Avatar','Cast Away'],'A famous ship and a famous iceberg'],['🕷️🧑‍🎓🏙️','Spider-Man',['Batman','Spider-Man','Ant-Man','Daredevil'],'Your friendly neighbourhood hero'],['🦖🧬🏝️','Jurassic Park',['Godzilla','Kong','Jurassic Park','Avatar'],'Dinosaurs brought back to life'],['🧙‍♂️💍🌋','The Lord of the Rings',['Harry Potter','The Hobbit','The Lord of the Rings','Narnia'],'One ring to rule them all']],
+'Bollywood':[['🏎️🎓😂','3 Idiots',['3 Idiots','Dhoom','Chhichhore','Student of the Year'],'All is well!'],['🐯🇮🇳🕵️','Tiger Zinda Hai',['War','Pathaan','Tiger Zinda Hai','Don'],'A spy action film'],['👑🔥⚔️','Bajirao Mastani',['Padmaavat','Bajirao Mastani','Jodhaa Akbar','Mohenjo Daro'],'A Maratha epic romance'],['🚂💃🇮🇳','Chennai Express',['Chennai Express','Dilwale','Om Shanti Om','Jab Tak Hai Jaan'],'A train journey to the south'],['🤼‍♀️🏆🇮🇳','Dangal',['Sultan','Dangal','Mary Kom','Chak De India'],'Wrestling champion daughters']],
+'Animation':[['🐠🔍🌊','Finding Nemo',['Finding Nemo','Moana','Shark Tale','Luca'],'A clownfish dad searches the ocean'],['🤠🧸🚀','Toy Story',['Cars','Toy Story','Up','Coco'],'To infinity and beyond!'],['🐼🥋🍜','Kung Fu Panda',['Kung Fu Panda','Madagascar','Bolt','Rio'],'Skadoosh!'],['❄️👸⛄','Frozen',['Tangled','Frozen','Brave','Moana'],'Let it go'],['🐀👨‍🍳🇫🇷','Ratatouille',['Ratatouille','Flushed Away','Cars','Soul'],'Anyone can cook']]};
+const $=id=>document.getElementById(id);let qs,i,sc,t,iv,locked,hint;
+$('cat').innerHTML=Object.keys(D).map(c=>`<option>${c}</option>`).join('');
+function show(id){['welcome','game','result'].forEach(s=>$(s).classList.toggle('hidden',s!==id))}
+function shuffle(a){return a.map(x=>[Math.random(),x]).sort((a,b)=>a[0]-b[0]).map(x=>x[1])}
+function start(){qs=shuffle(D[$('cat').value]);i=0;sc=0;show('game');load()}
+function load(){const q=qs[i];locked=false;hint=false;t=20;clearInterval(iv);iv=setInterval(()=>{t--;$('timer').textContent='⏱ '+t;if(t<=0)answer(null)},1000);
+ $('prog').textContent=`Movie ${i+1} of ${qs.length}`;$('score').textContent='Score: '+sc;$('timer').textContent='⏱ 20';$('clue').textContent=q[0];$('hint').textContent='';$('fb').textContent='';
+ $('opts').innerHTML=shuffle(q[2]).map(o=>`<button class="opt">${o}</button>`).join('');$('next').classList.add('hidden');$('hbtn').disabled=false}
+function answer(a){if(locked)return;locked=true;clearInterval(iv);const q=qs[i];
+ document.querySelectorAll('.opt').forEach(b=>{if(b.textContent===q[1])b.classList.add('right');else if(b.textContent===a)b.classList.add('wrong')});
+ if(a===q[1]){sc+=hint?5:10;$('fb').textContent='Correct! 🎉';$('fb').className='msg ok'}else{$('fb').textContent=(a===null?"Time's up! ":'Wrong. ')+'It was '+q[1];$('fb').className='msg bad'}
+ $('score').textContent='Score: '+sc;$('next').textContent=i===qs.length-1?'See Result':'Next';$('next').classList.remove('hidden')}
+$('opts').onclick=e=>{if(e.target.classList.contains('opt'))answer(e.target.textContent)};
+$('hbtn').onclick=()=>{if(locked)return;hint=true;$('hint').textContent='💡 '+qs[i][3];$('hbtn').disabled=true};
+$('next').onclick=()=>{if(++i<qs.length)load();else{$('rt').textContent=`Final score: ${sc} / ${qs.length*10}`;$('rs').textContent=sc>=40?'Movie buff! 🍿':sc>=20?'Not bad at all!':'Time for a movie marathon!';show('result')}};
+$('go').onclick=start;$('again').onclick=()=>show('welcome');

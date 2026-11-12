@@ -1,0 +1,6 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Quiz Application</title><link rel="stylesheet" href="style.css"></head><body><main class="app">
+<section id="welcome" class="card"><h1>🧠 Quiz Application</h1><p class="sub">Pick a category, answer the multiple-choice questions and see how you score.</p><label for="cat">Category</label><select id="cat"></select><br><br><button id="go">Start Quiz</button></section>
+<section id="quiz" class="card hidden"><div class="row"><span class="pill" id="prog"></span><span class="pill" id="timer"></span></div><h2 id="q" style="margin-top:14px"></h2><div id="opts"></div><p class="msg bad" id="warn"></p>
+<div class="row"><button class="alt" id="prev">Previous</button><button id="next">Next</button><button id="submit" class="hidden">Submit Quiz</button></div><div id="dots" style="margin-top:14px"></div></section>
+<section id="result" class="card hidden"><h1 id="rt"></h1><p class="sub" id="rs"></p><div id="rev"></div><button id="again">Restart Quiz</button></section>
+</main><script src="script.js"></script></body></html>

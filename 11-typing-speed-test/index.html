@@ -1,35 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Typing Speed Test</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="box">
-    <h1>⌨️ Typing Speed Test</h1>
-    <p>Type the text passage as fast and accurately as you can!</p>
-
-    <!-- Score & Timer -->
-    <div class="stats-bar">
-      <span>Time Left: <b id="timer" style="color:red;">30s</b></span>
-      <span>Speed: <b id="wpm-display">0 WPM</b></span>
-      <span>Accuracy: <b id="accuracy-display">100%</b></span>
-      <span>Errors: <b id="error-count">0</b></span>
-    </div>
-
-    <!-- Passage -->
-    <div id="quote-display" class="quote-box">Click Start Test below to begin typing.</div>
-
-    <!-- Input -->
-    <textarea id="typing-input" rows="3" placeholder="Start typing here once you click start..." disabled></textarea>
-
-    <div class="btn-row">
-      <button onclick="startTest()" id="start-btn" class="main-btn">Start Test 🚀</button>
-      <button onclick="resetTest()" class="sub-btn">Reset 🔄</button>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
-</body>
-</html>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Typing Speed Test</title><link rel="stylesheet" href="style.css"></head><body><main class="app">
+<section id="welcome" class="card"><h1>⌨️ Typing Speed Test</h1><p class="sub">Type the passage as fast and accurately as you can before the timer ends.</p><label for="lvl">Difficulty</label><select id="lvl"><option value="easy">Easy — 60 seconds</option><option value="medium">Medium — 45 seconds</option><option value="hard">Hard — 30 seconds</option></select><br><br><button id="go">Start Test</button><p class="sub" style="margin-top:12px">Best WPM: <b id="best">0</b></p></section>
+<section id="test" class="card hidden"><div class="row"><div class="pill">⏱ <b id="time"></b>s</div><div class="pill">WPM <b id="wpm">0</b></div><div class="pill">Accuracy <b id="acc">100</b>%</div><div class="pill">Errors <b id="err">0</b></div></div>
+<div id="text" class="passage"></div><textarea id="in" rows="3" placeholder="Start typing here…" autocomplete="off" spellcheck="false"></textarea><br><br><button id="restart" class="alt">Restart</button></section>
+<section id="result" class="card hidden"><h1>Test complete</h1><div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(130px,1fr))"><div><span class="sub">Speed</span><h2><span id="rw"></span> WPM</h2></div><div><span class="sub">Accuracy</span><h2 id="ra"></h2></div><div><span class="sub">Errors</span><h2 id="re"></h2></div></div><p class="sub" id="rm"></p><button id="again">Try Again</button></section></main><script src="script.js"></script></body></html>

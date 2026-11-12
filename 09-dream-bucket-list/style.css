@@ -1,131 +1,22 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f7fafc;
-  margin: 0;
-  padding: 20px;
-  color: #2d3748;
-}
-
-.container {
-  max-width: 550px;
-  margin: 0 auto;
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-
-h1 { text-align: center; color: #4c51bf; margin-top: 0; }
-p { text-align: center; color: #718096; }
-
-.progress-box {
-  background: #edf2f7;
-  padding: 12px;
-  border-radius: 6px;
-  margin-bottom: 20px;
-}
-
-.stats-row {
-  display: flex;
-  justify-content: space-between;
-  font-size: 13px;
-  font-weight: bold;
-  margin-bottom: 8px;
-}
-
-.bar-track {
-  height: 8px;
-  background: #cbd5e0;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.bar-fill {
-  height: 100%;
-  background: #48bb78;
-}
-
-.form-box {
-  margin-bottom: 20px;
-}
-
-form {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-form input, form select {
-  padding: 8px;
-  border: 1px solid #cbd5e0;
-  border-radius: 4px;
-  font-size: 14px;
-  flex: 1;
-}
-
-.add-btn {
-  background: #4c51bf;
-  color: white;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.filter-row {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 15px;
-}
-
-.f-btn {
-  padding: 6px 12px;
-  border: 1px solid #cbd5e0;
-  background: #f7fafc;
-  border-radius: 15px;
-  cursor: pointer;
-  font-size: 12px;
-}
-
-.f-btn.active {
-  background: #4c51bf;
-  color: white;
-  border-color: #4c51bf;
-}
-
-.bucket-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.dream-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  border-bottom: 1px solid #edf2f7;
-}
-
-.dream-item.done span.title {
-  text-decoration: line-through;
-  color: #a0aec0;
-}
-
-.badge {
-  font-size: 11px;
-  padding: 2px 6px;
-  background: #e2e8f0;
-  border-radius: 4px;
-  margin-left: 6px;
-}
-
-.del-btn {
-  background: none;
-  border: none;
-  color: #e53e3e;
-  cursor: pointer;
-  font-weight: bold;
-}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#14122b;--card:#1f1c42;--ink:#f4f2ff;--mute:#a9a5d6;--acc:#ff7a59;--acc2:#ffd166;--ok:#3ddc97;--bad:#ff5d73}
+body{font-family:'Trebuchet MS',Verdana,sans-serif;background:linear-gradient(135deg,var(--bg),#2b1d5c);color:var(--ink);min-height:100vh;display:flex;justify-content:center;padding:20px}
+.app{width:100%;max-width:760px}
+h1{font-size:2rem;margin-bottom:8px}h2{margin-bottom:10px}
+p.sub{color:var(--mute);margin-bottom:16px;line-height:1.5}
+.card{background:var(--card);border-radius:16px;padding:22px;margin-bottom:16px;box-shadow:0 8px 24px #0006}
+button,.btn{background:var(--acc);color:#1a1033;border:0;border-radius:10px;padding:10px 18px;font:inherit;font-weight:700;cursor:pointer}
+button:hover{filter:brightness(1.1)}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--acc2)}
+button.alt{background:transparent;color:var(--ink);border:2px solid var(--mute)}
+input,select,textarea{font:inherit;padding:10px;border-radius:10px;border:2px solid #3b3680;background:#15133a;color:var(--ink);width:100%}
+label{display:block;margin:10px 0 4px;color:var(--mute);font-size:.9rem}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.row>*{flex:1}
+.hidden{display:none!important}
+.msg{margin-top:10px;min-height:1.4em;font-weight:700}.ok{color:var(--ok)}.bad{color:var(--bad)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.pill{display:inline-block;padding:3px 10px;border-radius:99px;background:#3b3680;font-size:.8rem}
+@media(max-width:520px){h1{font-size:1.6rem}.card{padding:16px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.track{height:14px;background:#15133a;border-radius:8px;margin-top:10px;overflow:hidden}#fill{height:100%;width:0;background:linear-gradient(90deg,var(--acc),var(--acc2));transition:width .4s}
+.dream{display:flex;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid #3b3680}.dream>div{flex:1}.dream.done b{text-decoration:line-through;color:var(--mute)}.dream button{padding:4px 10px}
+.High{background:var(--bad);color:#fff}.Medium{background:var(--acc2);color:#222}.Low{background:var(--ok);color:#222}

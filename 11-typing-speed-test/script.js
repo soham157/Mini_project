@@ -1,94 +1,17 @@
-// Student Mini Project: Typing Speed Test
-var quotes = [
-  "The quick brown fox jumps over the lazy dog.",
-  "Practice makes a person perfect in typing and programming.",
-  "JavaScript is an easy language to build interactive web apps.",
-  "Consistency and hard work always lead to great success."
-];
-
-var currentQuote = "";
-var timer = 30;
-var timerId = null;
-var isRunning = false;
-
-function startTest() {
-  if (isRunning) return;
-  isRunning = true;
-  timer = 30;
-
-  var randomIdx = Math.floor(Math.random() * quotes.length);
-  currentQuote = quotes[randomIdx];
-
-  document.getElementById('quote-display').innerText = currentQuote;
-  var input = document.getElementById('typing-input');
-  input.value = "";
-  input.disabled = false;
-  input.focus();
-
-  document.getElementById('start-btn').disabled = true;
-
-  clearInterval(timerId);
-  timerId = setInterval(function() {
-    timer--;
-    document.getElementById('timer').innerText = timer + "s";
-    calculateStats();
-
-    if (timer <= 0) {
-      endTest();
-    }
-  }, 1000);
-
-  input.oninput = function() {
-    calculateStats();
-    if (input.value === currentQuote) {
-      endTest();
-    }
-  };
-}
-
-function calculateStats() {
-  var input = document.getElementById('typing-input').value;
-  var errors = 0;
-
-  for (var i = 0; i < input.length; i++) {
-    if (i >= currentQuote.length || input[i] !== currentQuote[i]) {
-      errors++;
-    }
-  }
-
-  var elapsedMins = (30 - timer) / 60;
-  if (elapsedMins <= 0) elapsedMins = 0.01;
-
-  var correctChars = input.length - errors;
-  if (correctChars < 0) correctChars = 0;
-
-  // WPM = (correctChars / 5) / timeInMinutes
-  var wpm = Math.round((correctChars / 5) / elapsedMins);
-  var accuracy = input.length > 0 ? Math.round(((input.length - errors) / input.length) * 100) : 100;
-  if (accuracy < 0) accuracy = 0;
-
-  document.getElementById('wpm-display').innerText = wpm + " WPM";
-  document.getElementById('accuracy-display').innerText = accuracy + "%";
-  document.getElementById('error-count').innerText = errors;
-}
-
-function endTest() {
-  clearInterval(timerId);
-  isRunning = false;
-  document.getElementById('typing-input').disabled = true;
-  document.getElementById('start-btn').disabled = false;
-  alert("Test completed! Check your final WPM and accuracy scores.");
-}
-
-function resetTest() {
-  clearInterval(timerId);
-  isRunning = false;
-  document.getElementById('typing-input').value = "";
-  document.getElementById('typing-input').disabled = true;
-  document.getElementById('start-btn').disabled = false;
-  document.getElementById('timer').innerText = "30s";
-  document.getElementById('wpm-display').innerText = "0 WPM";
-  document.getElementById('accuracy-display').innerText = "100%";
-  document.getElementById('error-count').innerText = "0";
-  document.getElementById('quote-display').innerText = "Click Start Test below to begin typing.";
-}
+const P={easy:['The sun is bright and the sky is blue. We walk to the park every morning with our dog.','A small cat sat on the warm mat and watched the birds fly over the green trees.'],
+medium:['Learning to code takes patience and practice, but every small program you finish makes the next one a little easier to build.','Good habits are built one day at a time, and consistent effort will always beat occasional bursts of motivation.'],
+hard:['Asynchronous JavaScript functions, such as promises and callbacks, require careful handling; otherwise, unexpected errors may occur at runtime!','Quick, brown foxes jumped over 12 lazy dogs while 7 wizards boxed: "Pack my box with five dozen liquor jugs."']};
+const T={easy:60,medium:45,hard:30};const $=id=>document.getElementById(id);let txt,t,iv,started,lvl;
+$('best').textContent=localStorage.getItem('wpmBest')||0;
+function show(id){['welcome','test','result'].forEach(s=>$(s).classList.toggle('hidden',s!==id))}
+function start(){lvl=$('lvl').value;const a=P[lvl];txt=a[Math.floor(Math.random()*a.length)];t=T[lvl];started=false;clearInterval(iv);
+ $('in').value='';$('in').disabled=false;$('time').textContent=t;$('wpm').textContent=0;$('acc').textContent=100;$('err').textContent=0;paint('');show('test');$('in').focus()}
+function stats(v){let e=0;for(let i=0;i<v.length;i++)if(v[i]!==txt[i])e++;const mins=(T[lvl]-t)/60||1/60;const w=Math.round(((v.length-e)/5)/mins);
+ return{e,w:Math.max(0,w),a:v.length?Math.round((v.length-e)/v.length*100):100}}
+function paint(v){$('text').innerHTML=[...txt].map((c,i)=>`<span class="${i<v.length?(v[i]===c?'ok':'bad'):''} ${i===v.length?'cur':''}">${c===' '?'&nbsp;':c.replace('<','&lt;')}</span>`).join('')}
+$('in').addEventListener('input',()=>{const v=$('in').value;if(!started){started=true;iv=setInterval(()=>{t--;$('time').textContent=t;live();if(t<=0)end()},1000)}
+ paint(v);live();if(v.length>=txt.length)end()});
+function live(){const s=stats($('in').value);$('wpm').textContent=s.w;$('acc').textContent=s.a;$('err').textContent=s.e}
+function end(){clearInterval(iv);$('in').disabled=true;const s=stats($('in').value);$('rw').textContent=s.w;$('ra').textContent=s.a+'%';$('re').textContent=s.e;
+ const b=+localStorage.getItem('wpmBest')||0;if(s.w>b){localStorage.setItem('wpmBest',s.w);$('best').textContent=s.w;$('rm').textContent='🏆 New personal best!'}else $('rm').textContent=s.w>=40?'Great speed!':'Keep practising — speed comes with accuracy.';show('result')}
+$('go').onclick=start;$('restart').onclick=start;$('again').onclick=()=>show('welcome');

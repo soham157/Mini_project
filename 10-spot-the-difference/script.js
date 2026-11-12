@@ -1,162 +1,18 @@
-// Student Mini Project: Spot the Difference
-var differences = [
-  { id: 1, x: 60, y: 50, r: 25, desc: "Sun color changed", found: false },
-  { id: 2, x: 150, y: 150, r: 25, desc: "House door color changed", found: false },
-  { id: 3, x: 240, y: 110, r: 25, desc: "Tree apple missing", found: false }
-];
-
-var score = 0;
-var timer = 60;
-var timerId = null;
-
-window.onload = function() {
-  initGame();
-};
-
-function initGame() {
-  score = 0;
-  timer = 60;
-  for (var i = 0; i < differences.length; i++) differences[i].found = false;
-
-  document.getElementById('found-count').innerText = "0 / 3";
-  document.getElementById('score').innerText = "0";
-  document.getElementById('msg-text').innerText = "Click on the differences in the right picture!";
-  document.getElementById('msg-text').style.color = "white";
-
-  drawScenes();
-
-  clearInterval(timerId);
-  timerId = setInterval(function() {
-    timer--;
-    document.getElementById('timer').innerText = timer + "s";
-    if (timer <= 0) {
-      clearInterval(timerId);
-      document.getElementById('msg-text').innerText = "Time's up! Game Over.";
-      document.getElementById('msg-text').style.color = "red";
-    }
-  }, 1000);
-}
-
-function drawScenes() {
-  var c1 = document.getElementById('canvas-orig').getContext('2d');
-  var c2 = document.getElementById('canvas-diff').getContext('2d');
-
-  drawSingleScene(c1, false);
-  drawSingleScene(c2, true);
-}
-
-function drawSingleScene(ctx, isDiff) {
-  ctx.clearRect(0, 0, 300, 220);
-
-  // Grass & Sky
-  ctx.fillStyle = "#68d391";
-  ctx.fillRect(0, 140, 300, 80);
-  ctx.fillStyle = "#63b3ed";
-  ctx.fillRect(0, 0, 300, 140);
-
-  // Difference 1: Sun at (60, 50)
-  ctx.beginPath();
-  ctx.arc(60, 50, 20, 0, Math.PI * 2);
-  ctx.fillStyle = isDiff ? "#f56565" : "#ecc94b"; // Red sun on right vs yellow on left
-  ctx.fill();
-
-  // House
-  ctx.fillStyle = "#e2e8f0";
-  ctx.fillRect(110, 110, 80, 60);
-  ctx.fillStyle = "#e53e3e"; // Roof
-  ctx.beginPath();
-  ctx.moveTo(110, 110);
-  ctx.lineTo(150, 70);
-  ctx.lineTo(190, 110);
-  ctx.fill();
-
-  // Difference 2: Door at (150, 150)
-  ctx.fillStyle = isDiff ? "#3182ce" : "#805ad5"; // Blue door vs purple door
-  ctx.fillRect(140, 130, 20, 40);
-
-  // Tree
-  ctx.fillStyle = "#744210";
-  ctx.fillRect(235, 120, 14, 50);
-  ctx.fillStyle = "#38a169";
-  ctx.beginPath();
-  ctx.arc(242, 105, 30, 0, Math.PI * 2);
-  ctx.fill();
-
-  // Difference 3: Apple at (240, 100)
-  if (!isDiff) {
-    ctx.fillStyle = "red";
-    ctx.beginPath();
-    ctx.arc(240, 100, 6, 0, Math.PI * 2);
-    ctx.fill();
-  }
-
-  // Draw found circles
-  if (isDiff) {
-    for (var i = 0; i < differences.length; i++) {
-      if (differences[i].found) {
-        ctx.strokeStyle = "red";
-        ctx.lineWidth = 3;
-        ctx.beginPath();
-        ctx.arc(differences[i].x, differences[i].y, 20, 0, Math.PI * 2);
-        ctx.stroke();
-      }
-    }
-  }
-}
-
-function handleClick(e) {
-  var canvas = document.getElementById('canvas-diff');
-  var rect = canvas.getBoundingClientRect();
-  var clickX = e.clientX - rect.left;
-  var clickY = e.clientY - rect.top;
-
-  var hit = false;
-  for (var i = 0; i < differences.length; i++) {
-    var d = differences[i];
-    var dist = Math.sqrt((clickX - d.x)*(clickX - d.x) + (clickY - d.y)*(clickY - d.y));
-    if (dist <= d.r) {
-      if (!d.found) {
-        d.found = true;
-        score += 10;
-        hit = true;
-        document.getElementById('msg-text').innerText = "✅ Found: " + d.desc + "!";
-        document.getElementById('msg-text').style.color = "#48bb78";
-      } else {
-        alert("You already found this difference!");
-        return;
-      }
-      break;
-    }
-  }
-
-  if (!hit) {
-    document.getElementById('msg-text').innerText = "❌ No difference there, try again!";
-    document.getElementById('msg-text').style.color = "#f56565";
-  }
-
-  // Update counts
-  var foundTotal = 0;
-  for (var i = 0; i < differences.length; i++) {
-    if (differences[i].found) foundTotal++;
-  }
-
-  document.getElementById('found-count').innerText = foundTotal + " / 3";
-  document.getElementById('score').innerText = score;
-  drawScenes();
-
-  if (foundTotal === 3) {
-    clearInterval(timerId);
-    document.getElementById('msg-text').innerText = "🎉 Congratulations! You spotted all 3 differences!";
-    document.getElementById('msg-text').style.color = "#68d391";
-  }
-}
-
-function giveHint() {
-  for (var i = 0; i < differences.length; i++) {
-    if (!differences[i].found) {
-      alert("💡 Hint: Check the " + differences[i].desc.toLowerCase());
-      return;
-    }
-  }
-  alert("You've already found all differences!");
-}
+// Each "picture" is a grid of emoji; the right grid has swapped emoji to spot.
+const SETS=[['🌳','🏠','☁️','🐦','🌸','🐄','☀️','🚗','🌼'],['🐠','🐙','🦀','🐚','🌊','⭐','🐡','🪸','🐬'],['🍎','🍌','🍇','🍓','🍊','🍍','🥝','🍒','🍉']];
+const LV=[{n:5,d:3,t:60},{n:6,d:5,t:75},{n:7,d:7,t:90}];
+const $=id=>document.getElementById(id);let lvl=0,total=0,sc=0,found,diff,t,iv,A,B;
+function show(id){['welcome','game','result'].forEach(s=>$(s).classList.toggle('hidden',s!==id))}
+function build(){const L=LV[lvl],S=SETS[lvl],N=L.n*L.n;A=Array.from({length:N},()=>S[Math.floor(Math.random()*S.length)]);B=[...A];
+ diff=[];while(diff.length<L.d){const k=Math.floor(Math.random()*N);if(!diff.includes(k)){diff.push(k);let r;do r=S[Math.floor(Math.random()*S.length)];while(r===A[k]);B[k]=r}}
+ found=[];[['A',A],['B',B]].forEach(([id,g])=>{const el=$(id);el.style.setProperty('--n',L.n);el.innerHTML=g.map((e,i)=>`<div class="cell" data-i="${i}">${e}</div>`).join('')});
+ t=L.t;$('fb').textContent='';stat();clearInterval(iv);iv=setInterval(()=>{t--;stat();if(t<=0)end(false)},1000)}
+function stat(){$('lv').textContent='Level '+(lvl+1);$('found').textContent=`Found ${found.length}/${diff.length}`;$('timer').textContent='⏱ '+t+'s';$('score').textContent='Score '+sc}
+function end(win){clearInterval(iv);if(win)sc+=t*2+50;stat();
+ $('rt').textContent=win?'🎉 Level complete!':"⏰ Time's up!";$('rs').textContent=win?`Score so far: ${sc}`:`You found ${found.length} of ${diff.length}. Final score: ${sc}`;
+ const last=lvl===LV.length-1;$('next').classList.toggle('hidden',!win||last);if(win&&last){$('rt').textContent='🏆 All levels cleared!';$('rs').textContent='Final score: '+sc}show('result')}
+$('B').onclick=e=>{const c=e.target.closest('.cell');if(!c)return;const i=+c.dataset.i;if(found.includes(i))return;
+ if(diff.includes(i)){found.push(i);c.classList.add('hit');$('A').children[i].classList.add('hit');sc+=20;$('fb').textContent='Nice catch! ✅';$('fb').className='msg ok';stat();if(found.length===diff.length)end(true)}
+ else{sc=Math.max(0,sc-5);t=Math.max(0,t-3);c.classList.add('miss');setTimeout(()=>c.classList.remove('miss'),300);$('fb').textContent='Not a difference (-5 points, -3s)';$('fb').className='msg bad';stat()}};
+$('hint').onclick=()=>{const k=diff.find(d=>!found.includes(d));if(k===undefined)return;sc=Math.max(0,sc-10);$('B').children[k].classList.add('hint');stat()};
+$('go').onclick=()=>{lvl=0;sc=0;show('game');build()};$('next').onclick=()=>{lvl++;show('game');build()};$('again').onclick=()=>show('welcome');

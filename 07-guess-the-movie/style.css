@@ -1,87 +1,21 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #1a202c;
-  color: white;
-  margin: 0;
-  padding: 30px 15px;
-  display: flex;
-  justify-content: center;
-}
-
-.game-box {
-  background: #2d3748;
-  padding: 25px;
-  border-radius: 8px;
-  max-width: 480px;
-  width: 100%;
-  text-align: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
-
-h1 { color: #f6ad55; margin-top: 0; }
-
-.status-bar {
-  display: flex;
-  justify-content: space-between;
-  background: #1a202c;
-  padding: 8px 12px;
-  border-radius: 6px;
-  margin-bottom: 15px;
-  font-size: 14px;
-}
-
-.clue-card {
-  background: #1a202c;
-  padding: 15px;
-  border-radius: 8px;
-  margin-bottom: 15px;
-}
-
-.movie-emoji { font-size: 50px; margin-bottom: 8px; }
-
-.hint-btn {
-  background: none;
-  border: 1px solid #f6ad55;
-  color: #f6ad55;
-  padding: 4px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.options-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 15px;
-}
-
-.opt-btn {
-  padding: 12px;
-  background: #4a5568;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.opt-btn:hover { background: #718096; }
-
-.result-msg {
-  font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 15px;
-  min-height: 20px;
-}
-
-.main-btn {
-  background: #f6ad55;
-  color: #1a202c;
-  border: none;
-  border-radius: 6px;
-  padding: 10px 18px;
-  font-weight: bold;
-  cursor: pointer;
-  width: 100%;
-}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#14122b;--card:#1f1c42;--ink:#f4f2ff;--mute:#a9a5d6;--acc:#ff7a59;--acc2:#ffd166;--ok:#3ddc97;--bad:#ff5d73}
+body{font-family:'Trebuchet MS',Verdana,sans-serif;background:linear-gradient(135deg,var(--bg),#2b1d5c);color:var(--ink);min-height:100vh;display:flex;justify-content:center;padding:20px}
+.app{width:100%;max-width:760px}
+h1{font-size:2rem;margin-bottom:8px}h2{margin-bottom:10px}
+p.sub{color:var(--mute);margin-bottom:16px;line-height:1.5}
+.card{background:var(--card);border-radius:16px;padding:22px;margin-bottom:16px;box-shadow:0 8px 24px #0006}
+button,.btn{background:var(--acc);color:#1a1033;border:0;border-radius:10px;padding:10px 18px;font:inherit;font-weight:700;cursor:pointer}
+button:hover{filter:brightness(1.1)}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--acc2)}
+button.alt{background:transparent;color:var(--ink);border:2px solid var(--mute)}
+input,select,textarea{font:inherit;padding:10px;border-radius:10px;border:2px solid #3b3680;background:#15133a;color:var(--ink);width:100%}
+label{display:block;margin:10px 0 4px;color:var(--mute);font-size:.9rem}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.row>*{flex:1}
+.hidden{display:none!important}
+.msg{margin-top:10px;min-height:1.4em;font-weight:700}.ok{color:var(--ok)}.bad{color:var(--bad)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.pill{display:inline-block;padding:3px 10px;border-radius:99px;background:#3b3680;font-size:.8rem}
+@media(max-width:520px){h1{font-size:1.6rem}.card{padding:16px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.clue{font-size:4rem;text-align:center;padding:24px;background:#15133a;border-radius:14px;margin:14px 0;letter-spacing:8px}
+.opt{display:block;width:100%;text-align:left;margin:8px 0;background:#15133a;color:var(--ink);border:2px solid #3b3680}.opt.right{border-color:var(--ok)}.opt.wrong{border-color:var(--bad)}

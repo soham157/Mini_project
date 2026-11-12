@@ -1,62 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Dream Bucket List</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="container">
-    <h1>✨ Dream Bucket List</h1>
-    <p><i>"Dream Big, Plan Your Goals, Make Them Happen!"</i></p>
-
-    <!-- Progress Dashboard -->
-    <div class="progress-box">
-      <div class="stats-row">
-        <span>Total: <b id="total-count">0</b></span>
-        <span>Completed: <b id="comp-count" style="color:green;">0</b></span>
-        <span>Pending: <b id="pend-count" style="color:orange;">0</b></span>
-        <span>Progress: <b id="pct-val">0%</b></span>
-      </div>
-      <div class="bar-track">
-        <div id="bar-fill" class="bar-fill" style="width: 0%;"></div>
-      </div>
-    </div>
-
-    <!-- Add Form -->
-    <div class="form-box">
-      <h3>Add a New Dream / Goal</h3>
-      <form onsubmit="addDream(event)">
-        <input type="text" id="dream-name" placeholder="What is your dream or goal?" required>
-        <select id="dream-category">
-          <option value="Travel">Travel ✈️</option>
-          <option value="Career">Career 💼</option>
-          <option value="Education">Education 🎓</option>
-          <option value="Fitness">Fitness 🏃</option>
-          <option value="Adventure">Adventure 🧗</option>
-        </select>
-        <select id="dream-priority">
-          <option value="High">High Priority</option>
-          <option value="Medium" selected>Medium</option>
-          <option value="Low">Low</option>
-        </select>
-        <button type="submit" class="add-btn">+ Add Goal</button>
-      </form>
-    </div>
-
-    <!-- Filter Buttons -->
-    <div class="filter-row">
-      <button onclick="setFilter('all')" class="f-btn active">All</button>
-      <button onclick="setFilter('pending')" class="f-btn">Pending</button>
-      <button onclick="setFilter('completed')" class="f-btn">Completed</button>
-    </div>
-
-    <!-- Bucket List -->
-    <ul id="bucket-list" class="bucket-list">
-      <!-- Items -->
-    </ul>
-  </div>
-
-  <script src="script.js"></script>
-</body>
-</html>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dream Bucket List</title><link rel="stylesheet" href="style.css"></head><body><main class="app">
+<h1>🌠 Dream Bucket List</h1><p class="sub" id="quote"></p>
+<section class="card"><div class="row"><div><b id="pct">0%</b> complete — <span id="cnt">0 of 0</span></div></div><div class="track"><div id="fill"></div></div></section>
+<form id="f" class="card"><h2 id="ft">Add a dream</h2><label for="t">Dream</label><input id="t" placeholder="e.g. See the northern lights"><div class="row"><div><label for="c">Category</label><select id="c"><option>Travel</option><option>Career</option><option>Learning</option><option>Adventure</option><option>Health</option><option>Personal</option></select></div>
+<div><label for="p">Priority</label><select id="p"><option>High</option><option selected>Medium</option><option>Low</option></select></div><div><label for="d">Target date</label><input id="d" type="date"></div></div><p id="err" class="msg bad"></p><button>Save dream</button></form>
+<section class="card"><div class="row"><input id="s" placeholder="Search dreams…" aria-label="Search"><select id="fc" aria-label="Category filter"></select><select id="fs" aria-label="Status"><option value="">All</option><option value="open">Pending</option><option value="done">Completed</option></select></div><div id="list" style="margin-top:12px"></div></section></main><script src="script.js"></script></body></html>

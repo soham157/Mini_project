@@ -1,0 +1,7 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Daily Expense Tracker</title><link rel="stylesheet" href="style.css"></head><body><main class="app">
+<h1>💸 Daily Expense Tracker</h1><p class="sub">Add what you spend, see totals by category and keep your budget in check.</p>
+<section class="card"><div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr))"><div><span class="sub">Total spent</span><h2 id="total">₹0</h2></div><div><span class="sub">Today</span><h2 id="today">₹0</h2></div><div><span class="sub">Highest category</span><h2 id="top">—</h2></div></div></section>
+<form id="f" class="card"><h2 id="ft">Add expense</h2><div class="row"><div><label for="title">Title</label><input id="title" placeholder="e.g. Lunch"></div><div><label for="amt">Amount (₹)</label><input id="amt" type="number" step="0.01" min="0"></div></div>
+<div class="row"><div><label for="cat">Category</label><select id="cat"><option>Food</option><option>Travel</option><option>Shopping</option><option>Bills</option><option>Entertainment</option><option>Other</option></select></div><div><label for="date">Date</label><input id="date" type="date"></div></div><p id="err" class="msg bad"></p><button>Save expense</button></form>
+<section class="card"><h2>Category summary</h2><div id="bars"></div></section>
+<section class="card"><div class="row"><h2>Expenses</h2><select id="filter"></select></div><div id="list"></div></section></main><script src="script.js"></script></body></html>

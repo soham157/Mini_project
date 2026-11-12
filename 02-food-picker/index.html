@@ -1,56 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Food Picker - What Should I Eat?</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="container">
-    <h1>🍽️ Food Picker</h1>
-    <p>Can't decide what to eat? Let this tool help you pick your meal!</p>
-
-    <!-- Filters -->
-    <div class="filter-box">
-      <label><b>Meal Category:</b></label>
-      <select id="meal-category">
-        <option value="all">Any Category (Surprise Me)</option>
-        <option value="breakfast" selected>Breakfast</option>
-        <option value="lunch">Lunch</option>
-        <option value="snacks">Evening Snacks</option>
-        <option value="dinner">Dinner</option>
-      </select>
-
-      <br><br>
-      <label><b>Diet Preference:</b></label>
-      <input type="radio" name="diet" value="all" id="diet-all" checked> <label for="diet-all">All</label>
-      <input type="radio" name="diet" value="veg" id="diet-veg"> <label for="diet-veg">Veg</label>
-      <input type="radio" name="diet" value="non-veg" id="diet-nonveg"> <label for="diet-nonveg">Non-Veg</label>
-    </div>
-
-    <!-- Action Button -->
-    <button onclick="suggestFood()" class="main-btn">🎲 Suggest My Food</button>
-
-    <!-- Food Result Card -->
-    <div class="food-card" id="food-card">
-      <div id="food-emoji" class="food-icon">🍲</div>
-      <h2 id="food-name">Click Suggest to Start!</h2>
-      <p id="food-type-badge" class="badge">Category</p>
-      <p id="food-desc">Your recommended dish details will show up here.</p>
-      <p><b>Main Ingredients:</b> <span id="food-ingredients">-</span></p>
-      <button onclick="addToFavorites()" class="fav-btn">❤️ Add to Favorites</button>
-    </div>
-
-    <!-- Favorites Section -->
-    <div class="fav-section">
-      <h3>My Favorite Dishes</h3>
-      <ul id="favorites-list">
-        <li>No favorites added yet.</li>
-      </ul>
-      <button onclick="clearFavorites()" class="clear-btn">Clear Favorites</button>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
-</body>
-</html>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Food Picker</title><link rel="stylesheet" href="style.css"></head><body><main class="app">
+<section class="card"><h1>🍽️ What Should I Eat?</h1><p class="sub">Can't decide? Pick a meal and a food type and let us choose for you.</p>
+<div class="row"><div><label for="meal">Meal</label><select id="meal"><option>Breakfast</option><option>Lunch</option><option>Dinner</option><option>Snacks</option></select></div>
+<div><label for="type">Food type</label><select id="type"><option value="all">Any</option><option value="veg">Vegetarian</option><option value="nonveg">Non-Vegetarian</option></select></div></div><br>
+<div class="row"><button id="pick">Pick My Food</button><button id="challenge" class="alt">🎲 Random Challenge</button></div></section>
+<section id="out" class="card hidden"><div id="emoji" style="font-size:5rem;text-align:center"></div><h2 id="name" style="text-align:center"></h2><p class="sub" id="desc" style="text-align:center"></p><p style="text-align:center"><span class="pill" id="tag"></span></p><br>
+<div class="row"><button id="another">Try Another</button><button id="fav" class="alt">❤️ Add to Favourites</button></div></section>
+<section class="card"><h2>❤️ Favourites</h2><ul id="favs" style="list-style:none;line-height:2"></ul><p class="sub" id="noFav">Nothing saved yet.</p></section>
+</main><script src="script.js"></script></body></html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Student ID Card Generator</title><link rel="stylesheet" href="style.css"></head><body><main class="app" style="max-width:980px">
+<h1>🪪 Student ID Card Generator</h1><p class="sub">Fill in the details, upload a photo and generate a card you can print or save as PDF.</p>
+<div class="row" style="align-items:flex-start">
+<form class="card" id="form" style="flex:1 1 320px"><label>University / Institute name</label><input id="uni" value="UNIVERSITY NAME">
+<label>Tagline</label><input id="tag" value="Tagline Goes Here"><label>Enrollment No</label><input id="enr" required>
+<label>Student ID</label><input id="sid" required><label>Student name</label><input id="nm" required>
+<label>Father / Guardian name</label><input id="gd"><label>Department / Major</label><input id="dep"><label>Class / Course / Batch</label><input id="cls">
+<label>Emergency call</label><input id="emg" type="tel"><label>Blood group</label><input id="bld"><label>Email</label><input id="em" type="email"><label>Phone</label><input id="ph" type="tel">
+<label>Photo</label><input id="photo" type="file" accept="image/*"><label>Card colour</label><input id="clr" type="color" value="#0b3d91"><br><br>
+<div class="row"><button type="submit">Generate Card</button><button type="button" class="alt" id="print">Print / Save</button></div></form>
+<div style="flex:1 1 420px"><div class="cards" id="cards"><div class="id front"><div class="top"><b id="vUni"></b><small id="vTag"></small></div><div class="ph" id="vPh">📷</div>
+<dl><dt>Enrollment No</dt><dd id="vEnr"></dd><dt>Student ID</dt><dd id="vSid"></dd><dt>Student Name</dt><dd id="vNm"></dd><dt>Father/Guardian</dt><dd id="vGd"></dd><dt>Department</dt><dd id="vDep"></dd><dt>Class</dt><dd id="vCls"></dd><dt>Emergency Call</dt><dd id="vEmg"></dd></dl></div>
+<div class="id back"><b class="tc">TERMS &amp; CONDITIONS</b><ul><li>This card is property of the institute and must be carried on campus.</li><li>If found, please return it to the administration office.</li></ul>
+<dl><dt>Blood</dt><dd id="vBld"></dd><dt>Email</dt><dd id="vEm"></dd><dt>Phone</dt><dd id="vPh2"></dd></dl><div class="sig">Signature</div></div></div></div></div>
+</main><script src="script.js"></script></body></html>
